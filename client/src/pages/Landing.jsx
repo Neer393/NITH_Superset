@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 export default function Landing() {
     const location = useLocation();
@@ -18,13 +18,19 @@ export default function Landing() {
         }
     }, [location]);
 
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        setIsLoaded(true);
+    }, []);
+
     return (
         <div>
             <Navbar />
             <div className="flex flex-col-reverse md:flex-row items-center justify-around bg-white py-4 px-4 md:px-6 lg:px-8">
                 <div className="md:w-1/2 text-center md:text-left md:pl-[2%]">
-                    <h1 className="text-[2.5rem] font-bold text-gray-900">Where Talent</h1>
-                    <h1 className="text-[2.5rem] font-bold text-gray-900">Meets Opportunity</h1>
+                    <h1 className={`text-[2.5rem] font-bold text-gray-900 transition-opacity duration-[1500ms] ease-in-out ${isLoaded ? "opacity-100" : "opacity-0"}`}>Where Talent</h1>
+                    <h1 className={`text-[2.5rem] font-bold text-gray-900 transition-opacity duration-[1500ms] ease-in-out ${isLoaded ? "opacity-100" : "opacity-0"}`}>Meets Opportunity</h1>
                     <p className="mt-4 text-gray-600">
                         Superset helps fresh graduates get their first jobs,
                     </p>
@@ -45,22 +51,22 @@ export default function Landing() {
                         <img
                             src="/website-hero-bg.svg"
                             alt="Background"
-                            className="w-[92%] h-auto object-cover z-1"
+                            className={`w-[92%] h-auto object-cover z-1 transition-opacity duration-[800ms] ease-in-out ${isLoaded ? "opacity-100" : "opacity-0"}`}
                         />
                         <img
                             src="/hero-person-1.png"
                             alt="Person 1"
-                            className="absolute top-0 left-[8%] w-[45%] md:w-[45%] h-[60%] z-2 rounded"
+                            className={`absolute top-0 left-[8%] w-[45%] md:w-[45%] h-[60%] z-2 rounded transition-transform duration-[1200ms] ease-in-out ${isLoaded ? "translate-y-0" : "-translate-y-[50%]"}`}
                         />
                         <img
                             src="/hero-person-2.svg"
                             alt="Person 2"
-                            className="absolute top-[20%] md:top-[20%] left-[55%] md:left-[55%] w-[45%] h-auto z-2 rounded"
+                            className={`absolute top-[20%] md:top-[20%] left-[55%] md:left-[55%] w-[45%] h-auto z-2 rounded transition-transform duration-[1200ms] ease-in-out ${isLoaded ? "translate-x-0" : "translate-x-[60%]"}`}
                         />
                         <img
                             src="/hero-person-3.svg"
                             alt="Person 3"
-                            className="absolute top-[62%] md:top-[62%] left-[8%] w-[45%] md:w-[45%] h-auto z-2 rounded"
+                            className={`absolute top-[62%] md:top-[62%] left-[8%] w-[45%] md:w-[45%] h-auto z-2 rounded transition-transform duration-[1200ms] ease-in-out ${isLoaded ? "translate-y-0" : "translate-y-[50%]"}`}
                         />
                     </div>
                 </div>
