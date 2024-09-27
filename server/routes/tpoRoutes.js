@@ -1,22 +1,19 @@
 const express = require('express');
 const authController = require('../controllers/authController.js');
+const tpoController = require('../controllers/tpoController.js');
 
 const router = express.Router();
 
 router
-  .route('/login')
-  .post(authController.login);
-
-  router
-  .route('/forgotPassword')
-  .post(authController.forgotPassword);
+  .route('/registerStudents')
+  .post(authController.protect,authController.restrictTo('tpo'),tpoController.registerStudents);
 
 router
-  .route('/resetPassword/:token')
-  .patch(authController.resetPassword);
+  .route('/registerCompany')
+  .post(authController.protect,authController.restrictTo('tpo'),tpoController.registerNewCompany);
 
 router
-  .route('/updatePassword')
-  .patch(authController.updatePassword);
+  .route('/registerStudent')
+  .post(authController.protect,authController.restrictTo('tpo'),tpoController.registerStudent);
 
 module.exports=router;

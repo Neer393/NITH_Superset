@@ -2,9 +2,10 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const {promisify} = require('util');
-const Student = require('../models/student');
-const Company = require('../models/company');
-const Tpo=require('../models/tpo');
+const Student = require('../models/student.js');
+const Company = require('../models/company.js');
+const Tpo=require('../models/tpo.js');
+const sendEmail = require('../utils/emailer.js');
 
 const sendToken = (user,statuscode,res)=>{
     const token = jwt.sign({id:user._id,role:user.role},process.env.JWT_SECRET,{
@@ -149,11 +150,11 @@ exports.forgotPassword = async(req,res,next)=>{
     const message = `Forgot your password? Submit a patch request with your new password and passwordConfirm to ${resetURL}`;
 
     try{
-        // await sendEmail({
-        //     email:user.email,
-        //     subject:'Your password reset Token (Valid for only 10 mins)',
-        //     message
-        // });
+        await sendEmail({
+            email:user.email,
+            subject:'Your password reset Token (Valid for only 10 mins)',
+            message
+        });
         res.status(200).json({
             status:'success',
             message: `Token sent to ${user.email}`
