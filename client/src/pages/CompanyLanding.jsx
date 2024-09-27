@@ -20,7 +20,7 @@ export default function Landing() {
             <div className="flex flex-col-reverse md:flex-row items-center justify-center bg-white py-4 px-4 md:px-6 lg:px-8">
                 <div className="max-w-[40rem] text-center md:text-left md:pl-[2%]">
                     <motion.h1
-                        className="text-[2.5rem] w-full font-bold text-gray-900"
+                        className="text-[2.3rem] w-full font-bold text-gray-900"
                         initial="hidden"
                         animate="visible"
                         variants={fade}
@@ -28,21 +28,21 @@ export default function Landing() {
                         Recruitment Infrastructure for Campus Hiring
                     </motion.h1>
 
-                    <p className="mt-4 text-xl text-justify text-gray-600">
+                    <p className="mt-4 text-lg sm:px-0 px-2 text-justify text-gray-600">
                         Thousands of Employers of all sizes — from startups to
                         large enterprises — use Superset to accept applications,
                         conduct assessments and interviews, roll out offers ‐
                         all with one account
                     </p>
 
-                    <div className="flex  w-full justify-center md:justify-start gap-4">
+                    <div className="flex flex-wrap  mx-auto w-full justify-center md:justify-start gap-4">
                         <button
-                            className="mt-6 bg-[#FFBB01] border-3 border-[#ECBA35] py-2 px-4 rounded-3xl text-[#000000] hover:bg-yellow-500"
+                            className="mt-6 bg-[#FFBB01] border-3 w-40 border-[#ECBA35] py-2 px-4 rounded-3xl text-[#000000] hover:bg-yellow-500"
                             onClick={() => redirect("/getStarted")}
                         >
                             Get Started
                         </button>
-                        <button className="mt-6  border-2  py-2 px-4 rounded-3xl text-[#000000] cursor-pointer flex items-center gap-2 ">
+                        <button className="mt-6  border-2  py-2 px-4 w-40 rounded-3xl text-[#000000] cursor-pointer flex items-center gap-2 justify-center ">
                             Watch Video{" "}
                             <IoPlayCircleOutline className="text-xl" />
                         </button>
@@ -62,7 +62,12 @@ export default function Landing() {
                 </div>
             </div>
 
-            <div className="lg:w-3/4 flex flex-col md:flex-row mx-auto justify-around items-center p-5 gap-10 md:gap-0 mb-20      ">
+            <motion.div
+                className="lg:w-3/4 flex flex-col md:flex-row mx-auto justify-around items-center p-5 gap-10 md:gap-0 mb-20"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.8 }}
+            >
                 <img
                     src="https://logos-world.net/wp-content/uploads/2020/09/Oracle-Logo.png"
                     className="h-20 saturate-0 opacity-50"
@@ -88,7 +93,7 @@ export default function Landing() {
                     alt="INFOSYS"
                     className="h-16 saturate-0 opacity-50"
                 />
-            </div>
+            </motion.div>
 
             <Footer />
         </div>
