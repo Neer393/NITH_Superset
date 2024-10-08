@@ -4,6 +4,7 @@ import Landing from "./pages/Landing";
 import Login from "./components/tpo/Login";
 import Register from "./components/tpo/Register";
 import CompanyLanding from "./pages/CompanyLanding";
+import TpoLanding from "./pages/TpoLanding";
 
 const router = createBrowserRouter([
     { path: "/", element: <Landing /> },
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     {
         path: "/company",
         children: [{ index: true, element: <CompanyLanding /> }],
+    },
+    {
+        path: "/tpo",
+        children: [{ index: true, element: <TpoLanding /> }],
     },
 ]);
 
